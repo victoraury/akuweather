@@ -1,36 +1,49 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+    import type { LatLng } from './types/weather';
     import Header from "./components/Header.svelte";
     import Searchbar from "./components/Searchbar.svelte";
-    import type { Current, Forecast, Location } from './types/weather';
-    import { getCurrent, getForecast, getIcon, getLocation } from "./lib/weather";
+    import RecentLocations from "./components/RecentLocations.svelte";
+    import LocationWeather from "./components/LocationWeather.svelte";
+    import LocationForecast from "./components/LocationForecast.svelte";
 
-    let current: Promise<Current> | null = null;
-    let forecast: Promise<Forecast[]> | null = null;
-    let location: Promise<Location> | null = null;
-
-    onMount( () => {
-        // getCurrent(-32.04, -52.117).then( v => console.log(JSON.stringify(v)));;
-        // getForecast(-32.04, -52.117).then( v => console.log(JSON.stringify(v)));;
-        // getLocation("rio grande").then( v => console.log(JSON.stringify(v)));
-    });
+    let location: LatLng | null = null;
 </script>
 
 <Header/>
-<Searchbar/>
 <main>
-    {#if current !== null}
-        {#await current}
-            <p>Carregando...</p>
-        {:then data} 
-            <img class="weather-icon" src={getIcon(data.weather[0].icon)} alt={data.weather[0].description}/>
-        {/await}
-    {/if}
+    <div class="upper">
+        <Searchbar bind:location/>
+        <RecentLocations/>
+    </div>
+    <div class="lower">
+        <LocationWeather/>
+        <LocationForecast/>
+    </div>
 </main>
 
 <style>
-    img.weather-icon {
-        height: 30px;
-        width: 30px;
+    main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        padding: 2rem;
+    }
+    div {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    div.upper {
+        min-height: 2rem;
+        /* flex: 0.25; */
+    }
+
+    div.lower {
+        flex: 0.75;
     }
 </style>

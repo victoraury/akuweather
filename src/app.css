@@ -20,14 +20,22 @@
   -webkit-text-size-adjust: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html body {
+  min-height: 100vh;
+}
+
 @font-face {
   font-family: TerexmalSunday;
-  src: url("public/TerexmalSunday.otf") format("opentype");
+  src: url("/TerexmalSunday.otf") format("opentype");
 }
 
 @font-face {
   font-family: SamuraiBob;
-  src: url("public/SamuraiBob.ttf") format("opentype");
+  src: url("/SamuraiBob.ttf") format("opentype");
 }
 
 a {
@@ -44,6 +52,9 @@ body {
   flex-direction: column;
   place-items: center;
   margin: 0;
+  background-image: url("/background-hell.webp");
+  background-repeat: no-repeat;
+  background-size:cover;
 }
 
 main {

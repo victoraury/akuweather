@@ -17,3 +17,7 @@ export function getLocation(searchTerm: string) {
 export function getIcon(iconCode: string) {
     return `http://openweathermap.org/img/wn/${iconCode}@2x.png`
 }
+
+export function toCelsius(deg: number) {
+    return (deg - 273.15).toFixed(0);
+}

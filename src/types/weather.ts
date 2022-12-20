@@ -1,3 +1,8 @@
+export interface LatLng {
+    lat: number
+    lng: number
+}
+
 export interface Current {
     coord: Coord
     weather: Weather[]

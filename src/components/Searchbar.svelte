@@ -2,7 +2,9 @@
     import Fa from 'svelte-fa';
     import { faSearch, faSpinner, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
     import { getLocation } from '../lib/weather';
-    import type { Location } from '../types/weather';
+    import type { Location, LatLng } from '../types/weather';
+
+    export let location: LatLng | null = null;
 
     let searchTerm: string = "";
     let searchInput;
@@ -45,7 +47,7 @@
                 <div class="suggs" on:click={ () => { showSugg = false; } } on:keypress={ () => {}  } >
                     {#if results.length !== 0}
                         {#each results as r}
-                            <div class="sugg">
+                            <div class="sugg" on:click={ () => {location = {lat: r.lat, lng: r.lon}; searchTerm = ""; }} on:keypress={ () => {} } >
                                 {r.name}{ r.state === undefined ? " - " : `, ${r.state}, ` }{r.country}
                             </div>
                         {/each}
@@ -64,6 +66,9 @@
     section {
         display: flex;
         flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
         padding: 2rem;
     }
 
@@ -71,39 +76,33 @@
         display: flex;
         align-items: center;
         background: var(--aku-gray);
-        width: 22rem;
-        height: 2rem;
+        width: clamp(16rem, 90vw, 24rem);
         padding: .8rem;
-        /* border-radius: .4rem; */
-        border-radius: .4rem .4rem .4rem .4rem;
         gap: .8rem;
-        border: 1px solid #d4d4d4;
+        border-top: 1px solid var(--aku-red);
+        border-bottom: 1px solid var(--aku-red);
     }
 
     div.spin {
         display: flex;
+        position: absolute;
         padding: .8rem .4rem;
         gap: .4rem;
     }
 
-    div.searching {
-        border-radius: .4rem .4rem 0 0;
-    }
-
     div.sugger {
         display: flex;
+        width: clamp(16rem, 90vw, 24rem);
+        justify-content: center;
     }
     
     div.suggs {
         display: flex;
         flex-direction: column;
-        width: 23.6rem;
-        flex-grow: 1;
+        width: clamp(16rem, 90vw, 24rem);
         position: absolute;
-        border-radius: 0 0 .4rem .4rem;
-        border-left: 1px solid #d4d4d4;
-        border-right: 1px solid #d4d4d4;
-        border-bottom: 1px solid #d4d4d4;
+        border-bottom: 1px solid var(--aku-red);
+        background: var(--aku-gray);
     }
 
     div.sugg {
@@ -117,7 +116,8 @@
 
     div.sugg:hover {
         color: var(--aku-red);
-        filter: brightness(1.4);
+        filter: brightness(1.8);
+        background-color: var(--aku-gray);
     }
 
     input {
