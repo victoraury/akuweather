@@ -2,7 +2,8 @@
     import { onMount } from "svelte";
     import Fa from "svelte-fa";
     import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-    import { getCurrent, toCelsius } from "../lib/weather";
+    import { getCurrent } from "../lib/weather";
+    import { toCelsius } from "../lib/format";
     import type { LatLng } from "../types/weather";
 
     let locations: LatLng[] = [{

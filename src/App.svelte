@@ -17,7 +17,7 @@
     </div>
     <div class="lower">
         <LocationWeather/>
-        <LocationForecast/>
+        <LocationForecast {location}/>
     </div>
 </main>
 
