@@ -94,6 +94,7 @@
         display: flex;
         width: clamp(16rem, 90vw, 24rem);
         justify-content: center;
+        z-index: 2;
     }
     
     div.suggs {
