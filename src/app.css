@@ -54,7 +54,8 @@ body {
   margin: 0;
   background-image: url("/background-hell.webp");
   background-repeat: no-repeat;
-  background-size:cover;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 main {

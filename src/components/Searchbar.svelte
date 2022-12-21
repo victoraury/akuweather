@@ -31,12 +31,12 @@
 </script>
 
 
-<section>
-    <div class="searchbar" class:searching={showSugg} on:click={searchInput.focus()} on:keypress={ () => {} } >
+<section on:focusout={ () => {showSugg = false;}}>
+    <div class="searchbar" class:searching={showSugg} on:click={searchInput.focus()} on:keypress={ () => {} }>
         <Fa icon={faSearch} color={"var(--aku-red)"}/>
         <input type="text" bind:this={searchInput} bind:value={searchTerm} placeholder="Busque um local" on:focus={ () => {showSugg = true;} } >
     </div>
-    {#if showSugg && (search !== null)}
+    {#if showSugg && (search !== null) && searchTerm !== ""}
         <div class="sugger">
             {#await search}
                 <div class="spin">

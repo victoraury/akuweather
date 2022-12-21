@@ -4,14 +4,16 @@
     import { faSpinner } from "@fortawesome/free-solid-svg-icons";
     import { getCurrent, getIcon } from "../lib/weather";
     import { toCelsius } from "../lib/format";
-    import type { LatLng } from "../types/weather";
     import { recent } from "../stores/weather";
+    import type { LatLng } from "../types/weather";
+
+    export let location: LatLng | null;
 
 </script>
 
 <section>
     {#each $recent as loc}
-        <div class="card">
+        <div class="card" on:click={ () => {location = loc} } on:keypress={ () => {} }>
             {#await getCurrent(loc.lat, loc.lng)}
                 <Fa icon={faSpinner} spin={true} size={"2x"}/>
             {:then curr}
@@ -56,6 +58,10 @@
         backdrop-filter: blur(10px);
         min-width: 9rem;
         max-width: 10rem;
+        cursor: pointer;
+    }
+    div.card:hover {
+        filter: brightness(1.5);
     }
 
     .name {

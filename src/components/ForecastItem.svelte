@@ -34,6 +34,9 @@
         border-radius: 5px;
         background: rgba(0, 0, 0, 0.5);
     }
+    div.forecast:hover {
+        filter: brightness(1.5);
+    }
     span {
         display: inline-flex;
         vertical-align: middle;

@@ -13,7 +13,7 @@
 <main>
     <div class="upper">
         <Searchbar bind:location/>
-        <RecentLocations/>
+        <RecentLocations bind:location/>
     </div>
     <div class="lower">
         <LocationWeather/>
@@ -33,14 +33,13 @@
         display: flex;
         flex-direction: row;
         width: 100%;
-        align-items: center;
         justify-content: center;
         flex-wrap: wrap;
     }
-
+    
     div.upper {
+        align-items: center;
         min-height: 2rem;
-        /* flex: 0.25; */
     }
 
     div.lower {
