@@ -26,7 +26,7 @@
                         <span class="degree-now">ºC</span>
                     </span>
                     <span class="temp-feel">
-                        {toCelsius(curr.main.temp)} 
+                        {toCelsius(curr.main.feels_like)} 
                         <span class="degree-feel">ºC</span>
                     </span>
                 </div>
