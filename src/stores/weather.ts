@@ -4,9 +4,9 @@ import type { LatLng } from '../types/weather';
 import { get } from 'svelte/store';
 
 export const recent: Writable<LatLng[]> = writable('recent-searches', [
-    { lat: 51.5072, lng: -0.1275 },
-    { lat: 52.2322, lng: 21.0083 },
-    { lat: -32, lng: -52 }
+    { lat: -30.54, lng: -52.522 },
+    { lat: -32.0334, lng: -52.0991 },
+    { lat: -31.7699, lng: -52.341 },
 ]);
 
 export function addRecent(location: LatLng) {
