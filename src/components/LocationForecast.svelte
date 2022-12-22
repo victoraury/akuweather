@@ -5,18 +5,20 @@
     import { faSpinner } from "@fortawesome/free-solid-svg-icons";
     import type { LatLng } from "../types/weather";
     import { slide } from 'svelte/transition'
-
+    import { addRecent } from "../stores/weather";
+    
     export let location: LatLng | null;
+    $: addRecent(location);
 
 </script>
 
 <section>
     {#if location !== null}
         {#await getForecast(location.lat, location.lng)}
-            <Fa icon={faSpinner} spin={true} size="2x" />
+            <Fa icon={faSpinner} spin={true} size="2x"/>
         {:then forecast} 
             <div class="forecasts" transition:slide >
-                {#each forecast.list.slice(0, 10) as info}
+                {#each forecast.list as info}
                     <ForecastItem {info}/>
                 {/each}
             </div>

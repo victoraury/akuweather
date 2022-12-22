@@ -57,6 +57,10 @@
     span.feels {
         font-size: .8rem;
     }
+    span.desc {
+        margin-left: auto;
+        margin-right: auto;
+    }
     span.prob {
         margin-left: auto;
         font-size: .8rem;
