@@ -1,20 +1,31 @@
 <script lang="ts">
-    import { onMount } from "svelte";
     import Fa from "svelte-fa";
     import { faSpinner } from "@fortawesome/free-solid-svg-icons";
     import { getCurrent, getIcon } from "../lib/weather";
     import { toCelsius } from "../lib/format";
     import { recent } from "../stores/weather";
-    import type { LatLng } from "../types/weather";
+    import type { LatLng, Current } from "../types/weather";
 
     export let location: LatLng | null;
+    
+    let recentData: { [loc: string]: Current } = {};
+    async function getCurrentCached(lat: number, lng: number) {
+        const key = `${lat}|${lng}`;
+        
+        if( recentData.hasOwnProperty(key) ) {
+            return recentData[key];
+        }
 
+        const data = await getCurrent(lat, lng);
+        recentData[key] = data;
+        return data
+    }
 </script>
 
 <section>
-    {#each $recent as loc}
+    {#each $recent as loc (`${loc.lat};${loc.lng}`)}
         <div class="card" on:click={ () => {location = loc} } on:keypress={ () => {} }>
-            {#await getCurrent(loc.lat, loc.lng)}
+            {#await getCurrentCached(loc.lat, loc.lng)}
                 <Fa icon={faSpinner} spin={true} size={"2x"}/>
             {:then curr}
                 <span class="name">{curr.name}</span>

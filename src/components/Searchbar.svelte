@@ -3,6 +3,7 @@
     import { faSearch, faSpinner, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
     import { getLocation } from '../lib/weather';
     import type { Location, LatLng } from '../types/weather';
+    import { fade, slide } from 'svelte/transition';
 
     export let location: LatLng | null = null;
 
@@ -37,14 +38,14 @@
         <input type="text" bind:this={searchInput} bind:value={searchTerm} placeholder="Busque um local" on:focus={ () => {showSugg = true;} } >
     </div>
     {#if showSugg && (search !== null) && searchTerm !== ""}
-        <div class="sugger">
+        <div class="sugger" transition:fade>
             {#await search}
-                <div class="spin">
+                <div class="spin" transition:slide >
                     <Fa icon={faCircleNotch} spin={true}/>
                     <p>Carregando...</p>
                 </div>
             {:then results} 
-                <div class="suggs" on:click={ () => { showSugg = false; } } on:keypress={ () => {}  } >
+                <div class="suggs" on:click={ () => { showSugg = false; } } on:keypress={ () => {}  } transition:slide >
                     {#if results.length !== 0}
                         {#each results as r}
                             <div class="sugg" on:click={ () => {location = {lat: r.lat, lng: r.lon}; searchTerm = ""; }} on:keypress={ () => {} } >
@@ -52,7 +53,7 @@
                             </div>
                         {/each}
                     {:else}
-                        <div class="spin">Nenhum resultado encontrado</div>
+                        <div class="spin none" transition:slide>Nenhum resultado encontrado</div>
                     {/if}
 
                 </div>
@@ -88,6 +89,10 @@
         position: absolute;
         padding: .8rem .4rem;
         gap: .4rem;
+        background: var(--aku-gray);
+    }
+    div.none {
+        align-self: center;
     }
 
     div.sugger {

@@ -7,7 +7,7 @@ export function getCurrent(lat: number, lon: number) {
 }
 
 export function getForecast(lat: number, lon: number) {
-    return apiRequest(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&lang=pt_br`, "GET") as Promise<Forecast>;
+    return apiRequest(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&lang=pt_br&cnt=16`, "GET") as Promise<Forecast>;
 }
 
 export function getLocation(searchTerm: string) {
