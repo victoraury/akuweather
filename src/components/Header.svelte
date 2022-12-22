@@ -4,7 +4,7 @@
 <header>
     <div class="content">
         <div class="logo">
-            <img src="public/logo.png" alt="Logo AkuWeather"/>
+            <img src="/logo.png" alt="Logo AkuWeather"/>
             <p class="red">
                 AKU
             </p>
