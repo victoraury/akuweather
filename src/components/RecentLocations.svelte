@@ -28,19 +28,17 @@
             {#await getCurrentCached(loc.lat, loc.lng)}
                 <Fa icon={faSpinner} spin={true} size={"2x"}/>
             {:then curr}
-                <span class="country">
-                    <img src="https://www.countryflagicons.com/FLAT/32/{curr.sys.country}.png" width=20 alt="">
-                </span>
+                <img class="country" src="https://www.countryflagicons.com/FLAT/32/{curr.sys.country}.png" width=20 alt="">
                 <div class="name">{curr.name}</div>
                 <img class="icon" src={getIcon(curr.weather[0].icon)} alt="">
                 <div class="temp">
                     <span class="temp-now">
                         {toCelsius(curr.main.temp)} 
-                        <span class="degree-now">ºC</span>
+                        <span class="degree-now">°C</span>
                     </span>
                     <span class="temp-feel">
                         {toCelsius(curr.main.feels_like)} 
-                        <span class="degree-feel">ºC</span>
+                        <span class="degree-feel">°C</span>
                     </span>
                 </div>
             {/await}
@@ -84,18 +82,13 @@
         font-weight: 600;
         overflow:hidden;
         width: 7rem;
-        padding: 0.6rem 0 0 0;
         white-space: nowrap;
         text-overflow: ellipsis;
     }
 
-    .country {
-        position: absolute;
-        color: #c83429;
-        font-weight: 700;
-        top: 0.1rem;
-        right: 0.25rem;
-        font-size: 0.75rem;
+    img.country {
+        padding: 0;
+        margin: 0 0 0 auto;
     }
     
     .temp {

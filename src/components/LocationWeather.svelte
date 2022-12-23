@@ -5,6 +5,7 @@
     import dayjs from 'dayjs';
     import utc from 'dayjs/plugin/utc';
     import timezone from 'dayjs/plugin/timezone';
+    import { slide, fade } from 'svelte/transition'
 
     dayjs.extend(utc);
     dayjs.extend(timezone);
@@ -19,44 +20,49 @@
 </script>
 
 {#if location != null}
-<section>
+    <section>
         {#await getCurrent(location.lat, location.lng)}
+        <div class="wrapper" transition:slide>
             <Fa icon={faSpinner} spin={true} size={"2x"}/>
+        </div>
         {:then curr}
-            <div class="title">
-                {curr.name}
+            <div class="wrapper" transition:slide>
+                <div class="title">
+                    {curr.name}
+                </div>
+                <div class="current-temp">
+                    <img class="icon" src={getIcon(curr.weather[0].icon)} alt="">
+                    <div class="temp-now">
+                        {toCelsius(curr.main.temp)} <div class="degree-now">°C</div>
+                    </div>
+                    <span class="temp-feel">
+                        {toCelsius(curr.main.feels_like)} 
+                        <span class="degree-feel">°C</span>
+                    </span>
+                </div>
+                <div class="info">
+                    <div>
+                        <Fa icon={faWind}/> {curr.wind.speed} m/s
+                    </div>
+                    <div>
+                        <Fa icon={faDroplet} rotate={-15}/> {curr.main.humidity}%
+                    </div>
+                    <div>
+                        <Fa icon={faCloud}/> {curr.clouds.all}%
+                    </div>
+                    <div class="sunrise">
+                        <Fa icon={faSun}/> {dayjs(curr.sys.sunrise * 1000).utcOffset(curr.timezone/60).format('HH:mm')} 
+                        <span class="tz">{curr.timezone >= 0 ? '+' : ''}{curr.timezone/3600}</span>
+                    </div>
+                    <div class="sunset">
+                        <Fa icon={faMoon}/> {dayjs(curr.sys.sunset * 1000).utcOffset(curr.timezone/60).format('HH:mm')} 
+                        <span class="tz">{curr.timezone >= 0 ? '+' : ''}{curr.timezone/3600}</span>
+                    </div>
+                </div>
             </div>
-            <div class="current-temp">
-                <img class="icon" src={getIcon(curr.weather[0].icon)} alt="">
-                <div class="temp-now">
-                    {toCelsius(curr.main.temp)} <div class="degree-now">°C</div>
-                </div>
-                <span class="temp-feel">
-                    {toCelsius(curr.main.feels_like)} 
-                    <span class="degree-feel">ºC</span>
-                </span>
-            </div>
-            <div class="info">
-                <div>
-                    <Fa icon={faWind}/> {curr.wind.speed} m/s
-                </div>
-                <div>
-                    <Fa icon={faDroplet} rotate={-15}/> {curr.main.humidity}%
-                </div>
-                <div>
-                    <Fa icon={faCloud}/> {curr.clouds.all}%
-                </div>
-                <div class="sunrise">
-                    <Fa icon={faSun}/> {dayjs(curr.sys.sunrise * 1000).utcOffset(curr.timezone/60).format('HH:mm')} 
-                    <span class="tz">{curr.timezone >= 0 ? '+' : ''}{curr.timezone/3600}</span>
-                </div>
-                <div class="sunset">
-                    <Fa icon={faMoon}/> {dayjs(curr.sys.sunset * 1000).utcOffset(curr.timezone/60).format('HH:mm')} 
-                    <span class="tz">{curr.timezone >= 0 ? '+' : ''}{curr.timezone/3600}</span>
-                </div>
-            </div>
+
         {/await}
-</section>
+    </section>
 {/if}
 
 <style>
@@ -72,6 +78,13 @@
         height: 100%;
         padding: 2rem 0rem;
         margin-bottom: 1rem;
+    }
+
+    div.wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
     }
     
     .title {

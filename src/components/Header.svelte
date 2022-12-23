@@ -40,12 +40,13 @@
         align-items: center;
         height: 100%;
         font-family: "SamuraiBob";
-        font-size: 4rem;
+        font-size: clamp(2.2rem, 12vw, 4rem);
         font-weight: bold;
     }
     p.red {
         color: var(--aku-red);
-        font-size: 4.6rem;
+        font-size: clamp(2rem, 15vw, 5rem);
+        
     }
     
     p.green {
@@ -54,7 +55,7 @@
 
     img {
         height: 10vh;
-        padding: .4rem 2rem;
+        padding: .2rem;
         will-change: filter;
     }
     img:hover {

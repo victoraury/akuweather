@@ -10,15 +10,14 @@
     const when = new Date(info.dt * 1000);
 
     const hour = when.getHours();
-    const day = when.getDay();
-    const month = when.getMonth();
-
+    const day = when.getDate();
+    const month = when.getMonth() + 1;
 </script>
 
 <div class="forecast">
     <span class="when">{twoPlaces(hour)}h</span><span class="date">{twoPlaces(day)}/{twoPlaces(month)}</span>
     <img src={getIcon(info.weather[0].icon)} alt={info.weather[0].description}/>
-    <span class="temp">{ toCelsius(info.main.temp) }°</span><span class="feels">{toCelsius(info.main.feels_like)}°</span>
+    <span class="temp">{ toCelsius(info.main.temp) }°<sup>C</sup></span><span class="feels">{toCelsius(info.main.feels_like)}°<sup class="feels">C</sup></span>
     <span class="desc">{ capitalize(info.weather[0].description) }</span>
     <span class="prob">{(info.pop * 100).toFixed(0)}%</span><Fa icon={faDroplet}/>
 </div>
@@ -58,6 +57,12 @@
     }
     span.feels {
         font-size: .8rem;
+    }
+    sup {
+        font-size: .8rem;
+    }
+    sup.feels {
+        font-size: .6rem;
     }
     span.desc {
         margin-left: auto;
