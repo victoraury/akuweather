@@ -5,6 +5,9 @@ Aplicação web para previsão do tempo e acompanhamento de condições meteriol
 
 Este projeto foi feito como avaliação para uma disciplina de Sistemas Distribuídos e visa o aprendizado de arquiteturas cliente-servidor, protocolos de comunicação, funcionamento de API's, CDN's e desenvolvimento web.
 
+## Acesso
+A página esa sendo hospedada no GitHub Pages e pode ser acessada [aqui](https://victoraury.github.io/akuweather/)
+
 ## Requisitos
 1. [Node.js](https://nodejs.org/en/) versão 16 ou superior
 2. Yarn versão 1.22 ou superior. Basta executar o seguinte comando após ter o Node.js instalado:
