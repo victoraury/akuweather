@@ -32,7 +32,9 @@
         gap: .4rem;
         padding: .4rem 1rem;
         border-radius: 5px;
-        background: rgba(0, 0, 0, 0.5);
+        background-color: rgba(28, 27, 34, 0.95);
+        backdrop-filter: blur(5px);
+        border: 1px solid var(--aku-red);
     }
     div.forecast:hover {
         filter: brightness(1.5);

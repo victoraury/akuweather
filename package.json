@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "dayjs": "^1.11.7",
     "svelte-fa": "^3.0.3",
     "svelte-local-storage-store": "^0.3.2"
   }

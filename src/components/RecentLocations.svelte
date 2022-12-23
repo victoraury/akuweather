@@ -28,8 +28,10 @@
             {#await getCurrentCached(loc.lat, loc.lng)}
                 <Fa icon={faSpinner} spin={true} size={"2x"}/>
             {:then curr}
-                <span class="name">{curr.name}</span>
-                <span class="country">{curr.sys.country}</span>
+                <span class="country">
+                    <img src="https://www.countryflagicons.com/FLAT/32/{curr.sys.country}.png" width=20 alt="">
+                </span>
+                <div class="name">{curr.name}</div>
                 <img class="icon" src={getIcon(curr.weather[0].icon)} alt="">
                 <div class="temp">
                     <span class="temp-now">
@@ -64,24 +66,35 @@
         justify-content: center;
         align-items: center;
         border-radius: 4px;
-        background: rgba(27, 26, 34, 0.5);
-        padding: 0.7rem 1rem;
-        backdrop-filter: blur(10px);
-        min-width: 9rem;
-        max-width: 10rem;
+        background-color: rgba(28, 27, 34, 0.95);
+        backdrop-filter: blur(5px);
+        border: 1px solid var(--aku-red);
+        padding: 0.4rem 1rem;
+        width:8.5rem;
+        height: 8.5rem;
         cursor: pointer;
     }
+    
     div.card:hover {
         filter: brightness(1.5);
     }
 
     .name {
+        font-size: 0.8rem;
         font-weight: 600;
+        overflow:hidden;
+        width: 7rem;
+        padding: 0.6rem 0 0 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
     .country {
-        align-self: flex-start;
-        margin-top: -0.4rem;
+        position: absolute;
+        color: #c83429;
+        font-weight: 700;
+        top: 0.1rem;
+        right: 0.25rem;
         font-size: 0.75rem;
     }
     
@@ -91,7 +104,6 @@
 
     .temp-now {
         display:flex;
-        flex-direction: row;
         font-size: 1.2rem;
         font-weight: 500;
     }
@@ -105,7 +117,6 @@
     .temp-feel {
         color: rgb(172, 169, 169);
         display:flex;
-        flex-direction: row;
         margin-left: 0.5rem;
         font-size: 0.9rem;
         font-weight: 600;

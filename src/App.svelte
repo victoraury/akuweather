@@ -16,7 +16,7 @@
         <RecentLocations bind:location/>
     </div>
     <div class="lower">
-        <LocationWeather/>
+        <LocationWeather {location}/>
         <LocationForecast {location}/>
     </div>
 </main>
@@ -40,9 +40,5 @@
     div.upper {
         align-items: center;
         min-height: 2rem;
-    }
-
-    div.lower {
-        flex: 0.75;
     }
 </style>

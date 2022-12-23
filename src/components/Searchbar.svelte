@@ -71,6 +71,7 @@
         justify-content: center;
         align-items: center;
         padding: 2rem;
+        min-width: clamp(300px, 500px, 90%);
     }
 
     div.searchbar {
@@ -124,6 +125,7 @@
         color: var(--aku-red);
         filter: brightness(1.8);
         background-color: var(--aku-gray);
+        cursor:pointer;
     }
 
     input {
