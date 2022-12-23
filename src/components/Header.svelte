@@ -1,10 +1,11 @@
 <script lang="ts">
+    import logo from '/logo.png';
 </script>
 
 <header>
     <div class="content">
         <div class="logo">
-            <img src="/logo.png" alt="Logo AkuWeather"/>
+            <img src={logo} alt="Logo AkuWeather"/>
             <p class="red">
                 AKU
             </p>
