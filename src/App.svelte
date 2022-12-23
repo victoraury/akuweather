@@ -27,7 +27,7 @@
         flex-direction: column;
         width: 100%;
         align-items: center;
-        padding: 2rem;
+        padding: 2rem 0;
     }
     div {
         display: flex;
