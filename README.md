@@ -1,5 +1,5 @@
 # akuweather
-Aplicação web para previsão do tempo e acompanhamento de condições meteriológicas.
+Aplicação web para previsão do tempo e acompanhamento de condições meteorológicas.
 
 ![Tela Inicial](/page.png "akuweather")
 
